@@ -248,7 +248,7 @@ public abstract class DictionaryCollection<N extends DictNode> {
         boolean ret = false;
         
         if (comp instanceof DictionaryCollection) {
-            DictionaryCollection dictComp = (DictionaryCollection) comp;
+            DictionaryCollection<?> dictComp = (DictionaryCollection<?>) comp;
             
             ret = ((alphaOrder == null && dictComp.alphaOrder == null) || alphaOrder.equals(dictComp.alphaOrder));
             ret = ret && nodeMap.equals(dictComp.nodeMap);
