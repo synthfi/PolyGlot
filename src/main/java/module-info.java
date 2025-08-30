@@ -6,7 +6,7 @@ module org.darisadesigns.polyglotlina.polyglot {
     requires javafx.media;
     requires javafx.swing;
     requires javafx.web;
-    requires java.desktop;
+    requires transitive java.desktop;
     requires java.logging;
     requires java.xml;
     requires jdk.charsets;

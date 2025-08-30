@@ -22,6 +22,7 @@ package org.darisadesigns.polyglotlina.Desktop;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.font.TextAttribute;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
@@ -195,10 +196,11 @@ public class PGTUtil extends org.darisadesigns.polyglotlina.PGTUtil {
      * @return newly derived font
      */
     @SuppressWarnings("unchecked") // No good way to do this in a type safe manner.
-    public static Font addFontAttribute(Object key, Object value, Font font) {
-        Map attributes = font.getAttributes();
-        attributes.put(key, value);
-        return font.deriveFont(attributes);
+    public static Font addFontAttribute(TextAttribute key, float value, Font font) {
+        Map<TextAttribute, ?> attributes = font.getAttributes();
+        Map<TextAttribute, Object> mutRef = (Map<TextAttribute, Object>) attributes;
+        mutRef.put(key, value);
+        return font.deriveFont(mutRef);
     }
     
     /**
