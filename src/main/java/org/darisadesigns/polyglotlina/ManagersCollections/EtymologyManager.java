@@ -271,7 +271,7 @@ public class EtymologyManager {
             }
         }
         
-        List<EtyExternalParent> ret = new ArrayList(retValsMap.values());
+        List<EtyExternalParent> ret = new ArrayList<EtyExternalParent>(retValsMap.values());
         Collections.sort(ret);
         return ret;
     }

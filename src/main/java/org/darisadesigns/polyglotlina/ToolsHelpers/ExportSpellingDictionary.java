@@ -92,7 +92,7 @@ public class ExportSpellingDictionary {
         StringBuilder sb = new StringBuilder();
         
         // ensure consistent ordering
-        List<String> wordList = new ArrayList(wordSet);
+        List<String> wordList = new ArrayList<String>(wordSet);
         Collections.sort(wordList);
         
         for (String wordForm : wordList) {

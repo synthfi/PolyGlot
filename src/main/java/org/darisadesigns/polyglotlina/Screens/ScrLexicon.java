@@ -464,7 +464,7 @@ public final class ScrLexicon extends PFrame {
                 
                 comboModel.addElement(" ");
                 
-                var sortedValues = new ArrayList(core.getWordCollection().getAllValues());
+                var sortedValues = new ArrayList<ConWord>(core.getWordCollection().getAllValues());
                 core.getWordCollection().safeSort(sortedValues);
                 
                 for (var populateWord : sortedValues) {
