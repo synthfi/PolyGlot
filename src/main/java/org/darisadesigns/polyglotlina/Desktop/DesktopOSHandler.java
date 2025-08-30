@@ -20,7 +20,6 @@
 package org.darisadesigns.polyglotlina.Desktop;
 
 import java.awt.Desktop;
-import java.awt.geom.Path2D;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;

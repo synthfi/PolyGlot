@@ -20,7 +20,6 @@
 package org.darisadesigns.polyglotlina;
 
 import java.awt.Font;
-import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;

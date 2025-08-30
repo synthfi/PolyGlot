@@ -22,7 +22,6 @@ package org.darisadesigns.polyglotlina.Desktop.CustomControls;
 import org.darisadesigns.polyglotlina.DictCore;
 import org.darisadesigns.polyglotlina.ManagersCollections.ConjugationManager;
 import org.darisadesigns.polyglotlina.Nodes.ConWord;
-import org.darisadesigns.polyglotlina.Nodes.ConjugationNode;
 import org.darisadesigns.polyglotlina.Nodes.ConjugationPair;
 import java.awt.BorderLayout;
 import java.awt.Color;
