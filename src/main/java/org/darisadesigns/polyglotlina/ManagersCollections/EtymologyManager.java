@@ -311,7 +311,6 @@ public class EtymologyManager {
                 cleanMap.remove(curEntry.getKey());
             } else {
                 Set<Integer> childIds = curEntry.getValue();
-                int childIdLength = childIds.size();
                 
                 // remove all dead children
                 for (Integer id : childIds.toArray(new Integer[0])) {
