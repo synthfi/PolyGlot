@@ -19,5 +19,11 @@ module org.darisadesigns.polyglotlina.polyglot {
     
     exports org.darisadesigns.polyglotlina;
     exports org.darisadesigns.polyglotlina.CustomControls;
+    exports org.darisadesigns.polyglotlina.Desktop;
     exports org.darisadesigns.polyglotlina.Desktop.CustomControls;
+    exports org.darisadesigns.polyglotlina.Desktop.ManagersCollections;
+    exports org.darisadesigns.polyglotlina.ManagersCollections;
+    exports org.darisadesigns.polyglotlina.Nodes;
+    exports org.darisadesigns.polyglotlina.QuizEngine;
+    exports org.darisadesigns.polyglotlina.Screens;
 }
