@@ -552,16 +552,16 @@ public class EtymologyManager {
      * removes empty entries from passed map
      * @param clean 
      */
-    private void clearParentChildList(Map clean) {
+    private void clearParentChildList(Map<?, ? extends Object> clean) {
         for(Object key : clean.keySet().toArray()) {
             Object value = clean.get(key);
             
             if (value instanceof List) {
-                if (((List)value).isEmpty()) {
+                if (((List<?>)value).isEmpty()) {
                     clean.remove(key);
                 }
             } else if (value instanceof Map) {
-                if (((Map)value).isEmpty()) {
+                if (((Map<?,?>)value).isEmpty()) {
                     clean.remove(key);
                 }
             }
