@@ -151,10 +151,10 @@ public class WordClassCollection extends DictionaryCollection<WordClass> {
         boolean ret = true;
 
         if (a.size() == b.size()) {
-            for (Entry aEntry : a) {
+            for (Entry<Integer, Integer> aEntry : a) {
                 boolean aRet = false;
 
-                for (Entry bEntry : b) {
+                for (Entry<Integer, Integer> bEntry : b) {
                     if (aEntry.equals(bEntry)) {
                         aRet = true;
                         break;
