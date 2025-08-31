@@ -148,7 +148,7 @@ public class PComboBox<E> extends JComboBox<E> implements MouseListener {
     @Override
     public void removeItem(Object item) {
         super.removeItem(item);
-        baseObjects.remove((E)item);
+        baseObjects.remove(item);
     }
     
     @Override
