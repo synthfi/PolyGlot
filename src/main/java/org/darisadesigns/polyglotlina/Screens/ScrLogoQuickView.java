@@ -302,7 +302,7 @@ public final class ScrLogoQuickView extends PFrame {
 
         lblLogoPic = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstLogos = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
+        lstLogos = new PList<LogoNode>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
         btnAdd = new PAddRemoveButton("+");
         btnDel = new PAddRemoveButton("-");
         btnOK = new PButton(nightMode);

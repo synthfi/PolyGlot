@@ -215,7 +215,7 @@ public class ScrDeclensionGenSimple extends PDialog {
         chkDisableForm = new PCheckBox(nightMode);
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstCombinedDec = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
+        lstCombinedDec = new PList<ConjugationPair>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 

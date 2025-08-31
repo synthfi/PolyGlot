@@ -69,7 +69,7 @@ public class ScrLanguageProblemDisplay extends PDialog {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
+        jList1 = new PList<LexiconProblemNode>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();

@@ -1075,14 +1075,14 @@ public class ScrLogoDetails extends PFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new PLabel("");
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstLogos = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
+        lstLogos = new PList<Object>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
         jPanel2 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lstRelWords = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
+        lstRelWords = new PList<Object>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
         jLabel8 = new PLabel("");
         jScrollPane4 = new javax.swing.JScrollPane();
-        lstRadicals = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
+        lstRadicals = new PList<Object>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
         jLabel10 = new PLabel("");
         btnAddReading = new PAddRemoveButton("+");
         btnDelReading = new PAddRemoveButton("-");
