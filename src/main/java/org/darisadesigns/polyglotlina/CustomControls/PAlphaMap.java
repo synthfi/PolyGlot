@@ -86,8 +86,8 @@ public class PAlphaMap<K, V> {
         boolean ret = false;
         
         if (comp instanceof PAlphaMap) {
-            ret = ((PAlphaMap)comp).getLongestEntry() == longestEntry
-                    && ((PAlphaMap)comp).getDelegate().equals(delegate);
+            ret = ((PAlphaMap<?,?>)comp).getLongestEntry() == longestEntry
+                    && ((PAlphaMap<?,?>)comp).getDelegate().equals(delegate);
         }
         
         return ret;
