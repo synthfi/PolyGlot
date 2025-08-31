@@ -46,7 +46,7 @@ public class ExportSpellingDictionary {
         wordSet = new HashSet<>();
     }
     
-    public void ExportSpellingDictionary(String targetLocation) throws IOException {
+    public void exportToFile(String targetLocation) throws IOException {
         ConWord[] words = core.getWordCollection().getWordNodes();
         
         populateFromWordArray(words);

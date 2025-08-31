@@ -1445,7 +1445,7 @@ public final class ScrMainMenu extends PFrame {
 
             ExportSpellingDictionary export = new ExportSpellingDictionary(core);
             try {
-                export.ExportSpellingDictionary(fileName);
+                export.exportToFile(fileName);
                 new DesktopInfoBox(this).info("Success", "File written to: " + fileName);
             }
             catch (IOException e) {
