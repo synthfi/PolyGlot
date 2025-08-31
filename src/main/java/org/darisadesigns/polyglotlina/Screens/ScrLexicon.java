@@ -529,7 +529,7 @@ public final class ScrLexicon extends PFrame {
 
         if (propList.length == 0) {
             // must include at least one item (even a dummy) to resize for some reason
-            JComboBox dummy = new JComboBox();
+            JComboBox<Object> dummy = new JComboBox<Object>();
             dummy.setEnabled(false);
             dummy.setSize(1, 0);
             dummy.setVisible(false);
