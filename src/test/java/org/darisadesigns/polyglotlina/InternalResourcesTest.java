@@ -20,7 +20,6 @@
 package org.darisadesigns.polyglotlina;
 
 import java.awt.Font;
-import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
@@ -87,7 +86,6 @@ public class InternalResourcesTest {
         
         for (String fontFileLocation : fontFileLocations) {
             try (InputStream tmp = this.getClass().getResourceAsStream(fontFileLocation)) {
-                GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
                 Font.createFont(Font.TRUETYPE_FONT, tmp);
             } catch (Exception e) {
                 problemFiles += fontFileLocation + ", ";

@@ -19,7 +19,6 @@
  */
 package org.darisadesigns.polyglotlina;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.io.IOException;
 import java.io.StringWriter;

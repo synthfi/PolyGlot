@@ -816,7 +816,7 @@ public class ConjugationManager {
 
     public ConjugationNode getConjugationTemplate(Integer typeId, Integer templateId) {
         List<ConjugationNode> searchList = dTemplates.get(typeId);
-        Iterator search = searchList.iterator();
+        Iterator<ConjugationNode> search = searchList.iterator();
         ConjugationNode ret = null;
 
         while (search.hasNext()) {

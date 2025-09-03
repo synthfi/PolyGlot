@@ -6,7 +6,7 @@ module org.darisadesigns.polyglotlina.polyglot {
     requires javafx.media;
     requires javafx.swing;
     requires javafx.web;
-    requires java.desktop;
+    requires transitive java.desktop;
     requires java.logging;
     requires java.xml;
     requires jdk.charsets;
@@ -19,5 +19,11 @@ module org.darisadesigns.polyglotlina.polyglot {
     
     exports org.darisadesigns.polyglotlina;
     exports org.darisadesigns.polyglotlina.CustomControls;
+    exports org.darisadesigns.polyglotlina.Desktop;
     exports org.darisadesigns.polyglotlina.Desktop.CustomControls;
+    exports org.darisadesigns.polyglotlina.Desktop.ManagersCollections;
+    exports org.darisadesigns.polyglotlina.ManagersCollections;
+    exports org.darisadesigns.polyglotlina.Nodes;
+    exports org.darisadesigns.polyglotlina.QuizEngine;
+    exports org.darisadesigns.polyglotlina.Screens;
 }

@@ -77,6 +77,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.KeyStroke;
+import javax.swing.ListModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -589,7 +590,7 @@ public class ScrLogoDetails extends PFrame {
             return;
         }
 
-        LogoNode curNode = (LogoNode) ((DefaultListModel) lstLogos.getModel()).get(nodeIndex);
+        LogoNode curNode = (LogoNode) lstLogos.getModel().getElementAt(nodeIndex);
 
         if (curNode == null
                 || (curPopulating && !overridePopulatingLock)) {
@@ -597,10 +598,10 @@ public class ScrLogoDetails extends PFrame {
         }
 
         List<LogoNode> radList = new ArrayList<>();
-        DefaultListModel radModel = (DefaultListModel) lstRadicals.getModel();
+        ListModel<Object> radModel = lstRadicals.getModel();
 
         for (int i = 0; i < radModel.getSize(); i++) {
-            LogoNode curRad = (LogoNode) radModel.get(i);
+            LogoNode curRad = (LogoNode) radModel.getElementAt(i);
             radList.add(curRad);
         }
 
@@ -630,7 +631,7 @@ public class ScrLogoDetails extends PFrame {
             return;
         }
 
-        LogoNode curNode = (LogoNode) ((DefaultListModel) lstLogos.getModel()).get(nodeIndex);
+        LogoNode curNode = (LogoNode) lstLogos.getModel().getElementAt(nodeIndex);
 
         if (curNode == null
                 || (curPopulating && !overridePopulatingLock)) {
@@ -1074,14 +1075,14 @@ public class ScrLogoDetails extends PFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new PLabel("");
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstLogos = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
+        lstLogos = new PList<Object>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
         jPanel2 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lstRelWords = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
+        lstRelWords = new PList<Object>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
         jLabel8 = new PLabel("");
         jScrollPane4 = new javax.swing.JScrollPane();
-        lstRadicals = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
+        lstRadicals = new PList<Object>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontCon(), core);
         jLabel10 = new PLabel("");
         btnAddReading = new PAddRemoveButton("+");
         btnDelReading = new PAddRemoveButton("-");

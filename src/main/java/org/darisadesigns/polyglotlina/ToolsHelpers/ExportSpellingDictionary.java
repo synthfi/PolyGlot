@@ -46,7 +46,7 @@ public class ExportSpellingDictionary {
         wordSet = new HashSet<>();
     }
     
-    public void ExportSpellingDictionary(String targetLocation) throws IOException {
+    public void exportToFile(String targetLocation) throws IOException {
         ConWord[] words = core.getWordCollection().getWordNodes();
         
         populateFromWordArray(words);
@@ -92,7 +92,7 @@ public class ExportSpellingDictionary {
         StringBuilder sb = new StringBuilder();
         
         // ensure consistent ordering
-        List<String> wordList = new ArrayList(wordSet);
+        List<String> wordList = new ArrayList<String>(wordSet);
         Collections.sort(wordList);
         
         for (String wordForm : wordList) {

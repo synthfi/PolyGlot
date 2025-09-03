@@ -464,7 +464,7 @@ public final class ScrLexicon extends PFrame {
                 
                 comboModel.addElement(" ");
                 
-                var sortedValues = new ArrayList(core.getWordCollection().getAllValues());
+                var sortedValues = new ArrayList<ConWord>(core.getWordCollection().getAllValues());
                 core.getWordCollection().safeSort(sortedValues);
                 
                 for (var populateWord : sortedValues) {
@@ -522,7 +522,7 @@ public final class ScrLexicon extends PFrame {
 
         if (propList.length == 0) {
             // must include at least one item (even a dummy) to resize for some reason
-            JComboBox dummy = new JComboBox();
+            JComboBox<Object> dummy = new JComboBox<Object>();
             dummy.setEnabled(false);
             dummy.setSize(1, 0);
             dummy.setVisible(false);
@@ -820,7 +820,7 @@ public final class ScrLexicon extends PFrame {
             testWord.setId(origWordId);
             int typeId = 0;
             Object selectedType = cmbType.getSelectedItem();
-            if (selectedType != null && !((PComboBox)cmbType).isDefaultValue()) {
+            if (selectedType != null && !((PComboBox<Object>)cmbType).isDefaultValue()) {
                 typeId = ((TypeNode) cmbType.getSelectedItem()).getId();
             }
 
@@ -1532,7 +1532,7 @@ public final class ScrLexicon extends PFrame {
         saveWord.setRulesOverride(chkRuleOverride.isSelected());
         Object curType = cmbType.getSelectedItem();
         if (curType != null) {
-            if (((PComboBox)cmbType).isDefaultValue()) {
+            if (((PComboBox<Object>)cmbType).isDefaultValue()) {
                 saveWord.setWordTypeId(0);
             } else {
                 saveWord.setWordTypeId(((TypeNode) curType).getId());
@@ -1745,7 +1745,7 @@ public final class ScrLexicon extends PFrame {
         jPanel3 = new javax.swing.JPanel();
         txtConWord = new PTextField(core, false, "Conlang Word");
         txtLocalWord = new PTextField(core, true, core.localLabel() + " Word");
-        cmbType = new PComboBox(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), "-- Part of Speech --", core);
+        cmbType = new PComboBox<Object>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), "-- Part of Speech --", core);
         txtProc = new PTextField(core, true, "Pronunciation");
         chkProcOverride = new PCheckBox(nightMode);
         chkRuleOverride = new PCheckBox(nightMode);

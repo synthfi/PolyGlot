@@ -51,7 +51,7 @@ public class PropertiesManagerTest {
             instance.setAlphaOrder("a");
             PAlphaMap<String, Integer> expResult = new PAlphaMap<>();
             expResult.put("a", 0);
-            PAlphaMap result = instance.getAlphaOrder();
+            PAlphaMap<String, Integer> result = instance.getAlphaOrder();
 
             assertEquals(expResult, result);
         } catch (Exception e) {

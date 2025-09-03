@@ -879,9 +879,9 @@ public final class ScrGrammarGuide extends PFrame {
         txtName = new PTextField(core, true, "Name");
         jPanel3 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        cmbFonts = new PComboBox(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
+        cmbFonts = new PComboBox<String>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
         txtFontSize = new javax.swing.JTextField();
-        cmbFontColor = new PComboBox(((DesktopPropertiesManager)core.getPropertiesManager()).getFontMenu(), core);
+        cmbFontColor = new PComboBox<String>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontMenu(), core);
         btnApply = new PButton(nightMode);
         panSection = new javax.swing.JScrollPane();
         txtSection = new PGrammarPane(core);
@@ -933,7 +933,7 @@ public final class ScrGrammarGuide extends PFrame {
         txtFontSize.setMaximumSize(new java.awt.Dimension(40, 20));
         jToolBar1.add(txtFontSize);
 
-        cmbFontColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "black", "red", "blue", "green", "gray", "yellow" }));
+        cmbFontColor.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "black", "red", "blue", "green", "gray", "yellow" }));
         cmbFontColor.setToolTipText("Font Color");
         cmbFontColor.setEnabled(false);
         cmbFontColor.setMaximumSize(new java.awt.Dimension(96, 20));
@@ -1304,8 +1304,8 @@ public final class ScrGrammarGuide extends PFrame {
     private javax.swing.JButton btnMoveNodeUp;
     private javax.swing.JButton btnPlayPauseAudio;
     private javax.swing.JButton btnRecordAudio;
-    private javax.swing.JComboBox cmbFontColor;
-    private javax.swing.JComboBox<Object> cmbFonts;
+    private javax.swing.JComboBox<String> cmbFontColor;
+    private javax.swing.JComboBox<String> cmbFonts;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

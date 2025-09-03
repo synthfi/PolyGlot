@@ -47,7 +47,7 @@ import org.darisadesigns.polyglotlina.Nodes.ConWord;
  */
 public class ScrWordFormConstructor extends PFrame {
     private ConWord word;
-    private final List<PComboBox> dimensionalValues;
+    private final List<PComboBox<LexDimension>> dimensionalValues;
     
     public ScrWordFormConstructor(DictCore _core, ConWord _word) {
         super(_core);

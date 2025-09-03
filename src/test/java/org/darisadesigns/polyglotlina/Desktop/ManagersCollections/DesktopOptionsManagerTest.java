@@ -23,7 +23,6 @@ import TestResources.DummyCore;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.io.File;
-import java.nio.file.Paths;
 import org.darisadesigns.polyglotlina.Desktop.DesktopIOHandler;
 import org.darisadesigns.polyglotlina.Desktop.PolyGlot;
 import org.darisadesigns.polyglotlina.DictCore;

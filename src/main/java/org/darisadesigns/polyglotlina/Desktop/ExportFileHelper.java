@@ -379,7 +379,6 @@ public class ExportFileHelper {
                 classes += ", ";
             }
             try {
-                ConjugationManager conMan= core.getConjugationManager();
                 WordClass prop = (WordClass) core.getWordClassCollection().getNodeById(curEntry.getKey());
                 WordClassValue value = prop.getValueById(curEntry.getValue());
                 classes += value.getValue();

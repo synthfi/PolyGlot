@@ -441,7 +441,7 @@ public final class ScrWordClasses extends PFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstProperties = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
+        lstProperties = new PList<WordClass>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
         btnAddProp = new PAddRemoveButton("+");
         btnDelProp = new PAddRemoveButton("-");
         jPanel1 = new javax.swing.JPanel();

@@ -233,7 +233,7 @@ public class ConWordTest {
     public void testCompareTo() {
         System.out.println("ConWordTest.testCompareTo");
         
-        PAlphaMap alphaOrder = new PAlphaMap();
+        PAlphaMap<String, Integer> alphaOrder = new PAlphaMap<String, Integer>();
         alphaOrder.put("b", 0);
         alphaOrder.put("a", 1);
         

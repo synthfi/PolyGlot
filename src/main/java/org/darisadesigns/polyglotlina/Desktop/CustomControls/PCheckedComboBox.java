@@ -123,7 +123,7 @@ public class PCheckedComboBox<E extends PCheckableItem> extends JComboBox<E> imp
      */
     public PCheckableItem[] getCheckedValues() {
         List<PCheckableItem> ret = new ArrayList<>();
-        PDefaultComboBoxModel myModel = (PDefaultComboBoxModel)dataModel;
+        PDefaultComboBoxModel<E> myModel = (PDefaultComboBoxModel<E>)dataModel;
         
         for (Object value : myModel.identityMap.values()) {
             if (value instanceof PCheckableItem) {
@@ -144,7 +144,7 @@ public class PCheckedComboBox<E extends PCheckableItem> extends JComboBox<E> imp
      */
     public PCheckableItem[] getAllValues() {
         List<PCheckableItem> ret = new ArrayList<>();
-        PDefaultComboBoxModel myModel = (PDefaultComboBoxModel)dataModel;
+        PDefaultComboBoxModel<E> myModel = (PDefaultComboBoxModel<E>)dataModel;
         
         for (Object value : myModel.identityMap.values()) {
             if (value instanceof PCheckableItem) {
@@ -162,7 +162,7 @@ public class PCheckedComboBox<E extends PCheckableItem> extends JComboBox<E> imp
      */
     public PCheckableItem getValueByIdentity(String identity) {
         PCheckableItem ret = null;
-        PDefaultComboBoxModel myModel = (PDefaultComboBoxModel)dataModel;
+        PDefaultComboBoxModel<E> myModel = (PDefaultComboBoxModel<E>)dataModel;
         
         if (myModel.identityMap.containsKey(identity)) {
             Object obj = myModel.identityMap.get(identity);

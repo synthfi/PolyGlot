@@ -600,7 +600,7 @@ public class PronunciationMgr {
             for (int i = 0; i < values.length; i += 2) {
                 String value = values[i];
                 if (ret.containsKey(value)) {
-                    List<String> curVals = new  ArrayList(Arrays.asList(ret.get(value)));
+                    List<String> curVals = new ArrayList<String>(Arrays.asList(ret.get(value)));
                     if (!curVals.contains(key)) {
                         curVals.add(key);
                     }

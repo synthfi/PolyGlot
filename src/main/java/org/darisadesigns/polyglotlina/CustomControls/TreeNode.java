@@ -104,7 +104,7 @@ public class TreeNode implements Iterable<TreeNode> {
             parent.registerChildForSearch(node);
     }
 
-    public TreeNode findTreeNode(Comparable cmp) {
+    public TreeNode findTreeNode(Comparable<Object> cmp) {
         for (TreeNode element : this.elementsIndex) {
             Object elData = element.data;
             if (cmp.compareTo(elData) == 0)

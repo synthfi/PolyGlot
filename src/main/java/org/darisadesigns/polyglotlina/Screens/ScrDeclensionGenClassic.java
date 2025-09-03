@@ -990,11 +990,11 @@ public final class ScrDeclensionGenClassic extends PDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new PLabel("");
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstCombinedDec = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
+        lstCombinedDec = new PList<Object>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new PLabel("");
         jScrollPane2 = new javax.swing.JScrollPane();
-        lstRules = new PList(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
+        lstRules = new PList<ConjugationGenRule>(((DesktopPropertiesManager)core.getPropertiesManager()).getFontLocal(), core);
         btnAddRule = new PAddRemoveButton("+");
         btnDeleteRule = new PAddRemoveButton("-");
         chkDisableWordform = new PCheckBox(nightMode);
