@@ -5,7 +5,7 @@ OSX, and Windows.
 """
 
 __author__      = "Draque Thompson"
-__copyright__   = "2019-2024"
+__copyright__   = "2019-2025"
 __license__     = "MIT"
 __maintainer__  = "draquemail@gmail.com"
 __status__      = "Production"
@@ -68,12 +68,16 @@ def main() -> int:
 
     parser = argparse.ArgumentParser(prog='PolyGlot Build Script',
         description = ('Handles builds of PolyGlot on all supported platforms. Examples:\n'
-            '\tLinux:   ./build_image.py --step image --java_home_0 /usr/lib/jvm/jdk-14\n'
+            '\tLinux:   ./build_image.py --step build --java_home_0 /usr/lib/jvm/jdk-14\n'
             '\tWindows: python3 build_image.py --skipTests\n'
             '\tOSX:     python3 build_image.py --intelBuild'),
         formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('--profile', '-p', type=str,
+        choices=['linux-aarch64', 'linux', 'mac-aarch64', 'mac', 'windows'],
+        required=True,
+        help='Maven profile to use during build')
     parser.add_argument('--step', default = [], nargs='?', action='append',
-        choices=['docs', 'build', 'clean', 'image', 'dist'],
+        choices=['docs', 'build', 'clean', 'dist'],
         help='Run a specific step. Leave empty to run all steps')
     parser.add_argument('--release', action='store_true',
         help='marks build as release build. Otherwise will be build as beta')
@@ -142,99 +146,68 @@ def main() -> int:
     elif osString == osxString and args.intelBuild:
         macIntelBuild = True
 
+    profile = args.profile
+
     full_build = len(args.step) == 0
 
+    if full_build or 'clean' in args.step:
+        clean()
     if full_build or 'docs' in args.step:
         injectDocs()
     if full_build or 'build' in args.step:
-        build(args.skipTests)
-    if full_build or 'clean' in args.step:
-        clean()
-    if full_build or 'image' in args.step:
-        image()
+        build(profile, args.skipTests)
     if full_build or 'dist' in args.step:
         dist(args.release, args.type_o)
 
     print('Done!')
     return 0
 
-def build(skipTests : bool):
+def build(profile : str, skipTests : bool):
     print('Injecting build date/time...')
     injectBuildDate()
 
     print('cleaning/testing/compiling...')
-    command = 'mvn clean package'
+    command = f'mvn clean package -P {profile}'
 
     if skipTests:
         command += ' -DskipTests'
-
-    os.system(command)
-
+    stat = subprocess.run(command, shell=True)
+    if stat.returncode != 0:
+        print(stat.args)
+        sys.exit(1)
 
 def clean():
     print('cleaning build paths...')
-    folders = [os.path.join('target', 'mods'), 'build']
-    for folder in folders:
+    command = 'mvn clean'
+    stat = subprocess.run('mvn clean', shell=True)
+    if stat.returncode != 0:
+        print(stat.args)
+        sys.exit(1)
+    for folder in ['build']:
         if os.path.exists(folder):
             shutil.rmtree(folder)
-
-def image():
-    os.makedirs(os.path.join('target', 'mods'))
-
-    javafx_location = getJfxLocation()
-    repo_location = getRepositoryLocation()
-    JACKSON_VER = getDependencyVersionByGroupId('com.fasterxml.jackson.core')
-    JAVAFX_VER = getDependencyVersionByGroupId('org.openjfx')
-    JSOUP_VER = getDependencyVersionByGroupId('org.jsoup')
-    LANG3_VER = getDependencyVersionByGroupIdAndName('org.apache.commons', 'commons-lang3')
-
-    print('creating jmod based on jar built without dependencies...')
-    stat = subprocess.run([os.path.join(JAVA_HOME, "bin", "jmod"),
-        "create",
-        "--class-path", os.path.join("target", JAR_WO_DEP),
-        "--main-class", "org.darisadesigns.polyglotlina.Desktop.PolyGlot", os.path.join("target", "mods", "PolyGlot.jmod")])
-    if stat.returncode != 0:
-        print(stat.args)
-        sys.exit(1)
-
-    print('creating runnable image...')
-    stat = subprocess.run([os.path.join(JAVA_HOME, "bin", "jlink"),
-        '--module-path',
-        os.pathsep.join([
-            "module_injected_jars",
-            os.path.join("target", "mods"),
-            os.path.join(repo_location, "com", "fasterxml", "jackson", "core", "jackson-core", JACKSON_VER) + os.sep,
-            os.path.join(repo_location, "com", "fasterxml", "jackson", "core", "jackson-databind", JACKSON_VER) + os.sep,
-            os.path.join(repo_location, "com", "fasterxml", "jackson", "core", "jackson-annotations", JACKSON_VER) + os.sep,
-            os.path.join(repo_location, 'org', 'jsoup', 'jsoup', JSOUP_VER) + os.sep,
-            os.path.join(repo_location, "org", "apache", "commons", "commons-lang3", LANG3_VER) + os.sep,
-            os.path.join(javafx_location, "javafx-graphics", JAVAFX_VER) + os.sep,
-            os.path.join(javafx_location, "javafx-base", JAVAFX_VER) + os.sep,
-            os.path.join(javafx_location, "javafx-media", JAVAFX_VER) + os.sep,
-            os.path.join(javafx_location, "javafx-swing", JAVAFX_VER) + os.sep,
-            os.path.join(javafx_location, "javafx-controls", JAVAFX_VER) + os.sep,
-            os.path.join(javafx_location, "javafx-web", JAVAFX_VER) + os.sep,
-            os.path.join(javafx_location, "jmods")
-        ]),
-        '--add-modules', 'org.darisadesigns.polyglotlina.polyglot,jdk.crypto.ec',
-        '--output', os.path.join("build", "image"),
-        '--compress=2',
-        '--launcher', 'PolyGlot=org.darisadesigns.polyglotlina.polyglot'])
-    if stat.returncode != 0:
-        print(stat.args)
-        sys.exit(1)
 
 def dist(is_release : bool, target_type : Union[str, None]):
     if os.path.exists('installer'):
         shutil.rmtree('installer')
+    
+    print('Unzipping runtime image...')
+    if osString == winString:
+        stat = subprocess.run(["powershell.exe", "-Command", f'Expand-Archive target\{JAR_WO_DEP.replace(".jar", "-runtime-image.zip")} -DestinationPath target\image'],
+            capture_output=True, text=True, check=True)
+    else:
+        stat = subprocess.run(f'unzip -q target/{JAR_WO_DEP.replace(".jar", "-runtime-image.zip")} -d target/image', shell=True)
+    if stat.returncode != 0:
+        print(stat.args)
+        sys.exit(1)
 
+    print('Calling jpackage for distribution...')
     if osString == linString:
         distLinux(is_release, target_type)
     elif osString == osxString:
         distOsx(is_release, target_type)
     elif osString == winString:
         distWin(is_release, target_type)
-
 
 ######################################
 #       LINUX FUNCTIONALITY
@@ -252,7 +225,7 @@ def distLinux(IS_RELEASE : bool, target_type : Union[str, None]):
                '--module org.darisadesigns.polyglotlina.polyglot/org.darisadesigns.polyglotlina.PolyGlot ' +
                '--name "PolyGlot" ' +
                '--license-file LICENSE.TXT ' +
-               '--runtime-image build/image')
+               '--runtime-image target/image')
     if target_type is None:
         os_info = subprocess.check_output(('cat', '/etc/os-release')).decode("utf-8")
         if "debian" in os_info:
@@ -291,7 +264,7 @@ def distOsx(IS_RELEASE : bool, target_type : Union[str, None]):
     print('Creating app image...')
 
     command = (JAVA_HOME + '/bin/jpackage ' +
-               '--runtime-image build/image ' +
+               '--runtime-image target/image ' +
                '--icon "PolyGlot.app" ' +
                '--name PolyGlot ' +
                '--module org.darisadesigns.polyglotlina.polyglot/org.darisadesigns.polyglotlina.PolyGlot ' +
@@ -381,7 +354,7 @@ def distWin(IS_RELEASE : bool, target_type : Union[str, None]):
 
     # If missing, install WiX Toolset: https://wixtoolset.org/releases/
     command = ('jpackage ' +
-               '--runtime-image build\\image ' +
+               '--runtime-image target\\image ' +
                '--win-shortcut ' +
                '--win-menu ' +
                '--win-dir-chooser ' +
@@ -417,46 +390,6 @@ def injectBuildDate():
 ####################################
 #       UTIL FUNCTIONALITY
 ####################################
-
-# handled here for timing reasons...
-def getJfxLocation():
-    ret = os.path.expanduser('~')
-
-    if osString == osxString and macIntelBuild:
-        ret = os.path.join(ret, '.m2', 'repository', 'org', 'openjfx_intel')
-    else:
-        ret = os.path.join(ret, '.m2', 'repository', 'org', 'openjfx')
-
-    return ret
-
-
-def getRepositoryLocation():
-    return os.path.join(os.path.expanduser('~'), '.m2', 'repository')
-
-
-def getDependencyVersionByGroupId(group_id):
-    ret = ''
-    doc = minidom.parse('pom.xml')
-    dependencies = doc.getElementsByTagName('dependency')
-
-    for dependency in dependencies:
-        if dependency.getElementsByTagName('groupId')[0].childNodes[0].nodeValue == group_id:
-            ret = dependency.getElementsByTagName('version')[0].childNodes[0].nodeValue
-            break
-    return ret
-
-def getDependencyVersionByGroupIdAndName(group_id, artifact_id):
-    ret = ''
-    doc = minidom.parse('pom.xml')
-    dependencies = doc.getElementsByTagName('dependency')
-
-    for dependency in dependencies:
-        group = dependency.getElementsByTagName('groupId')
-        artifact = dependency.getElementsByTagName('artifactId')
-        if group[0].childNodes[0].nodeValue == group_id and artifact[0].childNodes[0].nodeValue == artifact_id:
-            ret = dependency.getElementsByTagName('version')[0].childNodes[0].nodeValue
-            break
-    return ret
 
 # fetches version of PolyGlot from pom file
 def getVersion():

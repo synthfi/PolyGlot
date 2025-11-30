@@ -270,7 +270,6 @@ public final class ScrLexicon extends PFrame {
             Runnable fxSetup = () -> {
                 setupComboBoxesFX();
             };
-            Platform.setImplicitExit(false);
             wrapPlatformRunnable(fxSetup);
 
             ConWord curWord = getCurrentWord();
@@ -550,7 +549,6 @@ public final class ScrLexicon extends PFrame {
         jPanel1.setBackground(Color.white);
         fxPanel.setBackground(Color.white);
         final CountDownLatch latch = new CountDownLatch(1);
-        Platform.setImplicitExit(false);
         Platform.runLater(() -> {
             fxPanel.setScene(createScene());
             setupComboBoxesFX();
@@ -629,7 +627,6 @@ public final class ScrLexicon extends PFrame {
         if (cmbType.getModel().getSize() > 0) {
             cmbType.setSelectedIndex(0);
         }
-        Platform.setImplicitExit(false);
         Platform.runLater(() -> {
             txtConSrc.setText("");
             txtDefSrc.setText("");
@@ -659,7 +656,6 @@ public final class ScrLexicon extends PFrame {
             lstLexicon.ensureIndexIsVisible(0);
             populateProperties();
         });
-
         Platform.runLater(filterThread);
         gridTitlePane.setExpanded(false);
     }
